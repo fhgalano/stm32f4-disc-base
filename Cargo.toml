@@ -1,0 +1,38 @@
+[package]
+authors = ["fidel"]
+edition = "2018"
+readme = "README.md"
+name = "app"
+version = "0.1.0"
+
+[dependencies]
+embedded-hal = "0.2"
+nb = "1"
+cortex-m = "0.7.4"
+cortex-m-rt = "^0.7.1"
+cortex-m-semihosting = "0.3.3"
+panic-halt = "0.2.0"
+usb-device = "0.2.9"
+usbd-serial = "0.1.1"
+usbd-human-interface-device = "0.3.4"
+
+# Uncomment for the panic example.
+# panic-itm = "0.4.1"
+
+# Uncomment for the allocator example.
+# alloc-cortex-m = "0.4.0"
+
+[dependencies.stm32f4xx-hal]
+version = "0.14.0"
+features = ["stm32f407", "usb_fs"]
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "app"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
